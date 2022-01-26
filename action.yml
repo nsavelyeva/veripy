@@ -14,7 +14,7 @@ inputs:
     default: ""
     required: false
   covgate:
-    description: "a threshold for unit test coverage to be used as quality gate (not yet implemented)"
+    description: "a threshold for unit test coverage to be used as quality gate"
     default: "0"
     required: false
   comment:
@@ -26,7 +26,7 @@ inputs:
     default: true
     required: false
   token:
-    description: "github token, required if comment is true."
+    description: "github token, required if comment is true"
     default: ""
     required: false
 runs:
