@@ -48,5 +48,5 @@ class Cov(Scanner):
     def __init__(self, path='.', options='--verbose --with-id', covgate=0):
         self.name = 'cov'
         self.description = 'runs unit tests with code coverage using [nose](https://nose.readthedocs.io/en/latest/) and optionally asserts quality gate'
-        self.command = f'nosetests {options} --with-coverage --where {path}'  # nosetests --verbose --with-id --with-coverage --where lib/tests
+        self.command = f'nosetests {options} --with-coverage --cover-package={path} --where {path}'  # nosetests --verbose --with-id --with-coverage --where lib/tests
         self.install('requirements.txt')
