@@ -27,7 +27,10 @@ if __name__ == '__main__':
     elif scan == "raw":
         scanner = Raw(path or '.', options or '--summary')
     elif scan == "cov":
-        scanner = Cov(path or '.', options or '--verbose --with-id', covgate or 0)
+        opts = '--verbose --with-id --cover-inclusive ' + \
+               '--cover-html --cover-html-dir=/tmp/results/reports ' + \
+               '--cover-xml --cover-xml-file=/tmp/results/coverage.xml'
+        scanner = Cov(path or '.', options or opts, covgate or 0)
 
     command, code, output = scanner.scan()
     if code != 0:

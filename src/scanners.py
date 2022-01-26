@@ -50,6 +50,6 @@ class Cov(Scanner):
         self.description = 'runs unit tests with code coverage using [nose](https://nose.readthedocs.io/en/latest/)' + \
                            ' with [cover plugin](https://nose.readthedocs.io/en/latest/plugins/cover.html)' + \
                            ' and optionally asserts quality gate'
-        self.command = f'nosetests {options} --with-coverage --cover-inclusive --cover-min-percentage={covgate} ' + \
+        self.command = f'nosetests {options} --with-coverage --cover-min-percentage={covgate} ' + \
                        f'--cover-package={path} --where {path}'  # nosetests --verbose --with-id --with-coverage --where lib/tests
         self.install('requirements.txt')
