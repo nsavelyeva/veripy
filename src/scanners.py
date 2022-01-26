@@ -79,6 +79,3 @@ class Cov(Scanner):
             msg = 'Actual code coverage is %.2f%% - meets the configured threshold of %d%%' % (cov, self.gate)
         self.description += f'._\n\n### {msg}_'
         return cmd, ret, out
-
-    def prepare_comment(self, code, content, wrap=False):
-        return super().prepare_comment(code, content, wrap)
