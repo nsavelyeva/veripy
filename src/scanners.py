@@ -51,7 +51,7 @@ class Cov(Scanner):
         self.gate = covgate
         self.description = 'runs unit tests with code coverage using [nose2](https://docs.nose2.io/en/latest/)' + \
                            ' with [coverage plugin](https://docs.nose2.io/en/latest/plugins/coverage.html)' + \
-                           ' and optionally asserts quality gate'
+                           ' and asserts the quality gate threshold (default is 0)'
         # nose2 --verbose --start-dir . --with-coverage --coverage-report=html --coverage=.
         # creates .coverage, coverage.xml and htmlcov folder
         self.command = f'nose2 {options} --start-dir {path} --with-coverage --coverage={path} ' + \
@@ -61,6 +61,11 @@ class Cov(Scanner):
 
     def scan(self):
         cmd, ret, out = self.execute()
+        if ret:
+            msg = '### Unit tests execution failed.\n\n'
+        else:
+            msg = '### Unit tests execution passed.\n\n'
+
         # The file coverage.xml is generated, its first two lines are as follows:
         # <?xml version="1.0" ?>
         # <coverage version="6.3" timestamp="1643190874644" lines-valid="831" lines-covered="0" line-rate="0" ...>
@@ -74,8 +79,8 @@ class Cov(Scanner):
                 break
         if cov < self.gate:
             ret = 1
-            msg = 'Actual code coverage is %.2f%% - lower than %d%% (configured threshold)' % (cov, self.gate)
+            msg += '### Actual code coverage is %.2f%% - lower than %d%% (configured threshold)' % (cov, self.gate)
         else:
-            msg = 'Actual code coverage is %.2f%% - meets the configured threshold of %d%%' % (cov, self.gate)
-        self.description += f'._\n\n### {msg}_'
+            msg += '### Actual code coverage is %.2f%% - meets the configured threshold of %d%%' % (cov, self.gate)
+        self.description += f'._\n\n{msg}_'
         return cmd, ret, out
