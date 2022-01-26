@@ -61,9 +61,10 @@ class Cov(Scanner):
 
     def scan(self):
         cmd, ret, out = self.execute()
-        if ret:
+        msg = ''
+        if 'FAILED (failures=' in out:
             msg = '### Unit tests execution failed.\n\n'
-        else:
+        elif '\n\nOK\n' in out:
             msg = '### Unit tests execution passed.\n\n'
 
         # The file coverage.xml is generated, its first two lines are as follows:
