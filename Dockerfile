@@ -1,6 +1,7 @@
 FROM python:3.9.10-alpine3.15
 
-RUN pip install --no-cache-dir \
+RUN python -m pip install --upgrade pip && \
+    pip install --no-cache-dir \
         nose2[coverage_plugin] coverage pylint radon bandit
 
 COPY src /opt/veripy
