@@ -25,6 +25,7 @@ class Scanner:
         else:
             print(f'Could not find "{path}" in the current directory "{pwd}", ' +
                   f'unit tests may fail because of missing dependencies.\nContents of current directory is:\n{ls}')
+        return pwd
 
     def execute(self, cmd='', print_output=False, exit_on_failure=False, treat_non_empty_output_as_failure=False):
         if not cmd:
