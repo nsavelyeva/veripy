@@ -16,7 +16,7 @@ class Scanner:
         print('About to install Python dependencies')
         if os.path.isfile(path):
             print(f'Detected "{path}". Installing.')
-            cmd, ret, out = self.execute(f'pip install -r {path}', exit_on_failure=False)
+            cmd, ret, out = self.execute(f'pip install --prefix=/usr/local --no-compile -r {path}', exit_on_failure=False)
             if ret:
                 print(f'Command "{cmd}" exited with non-zero return code {ret} ' +
                       f'(unit tests may fail because of missing dependencies), captured output is:\n{out}')
