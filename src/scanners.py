@@ -58,6 +58,17 @@ class Cov(Scanner):
                        '--coverage-report=term --coverage-report=html --coverage-report=xml ' + \
                        '--coverage-config=/opt/veripy/coverage.conf'
         self.curdir = self.install('requirements.txt')
+        self.make_htmlcov()
+
+    # See release notes for versions 6.1, 6.2 and 6.3 about .gitignore file
+    # at https://coverage.readthedocs.io/en/6.3/changes.html?highlight=gitignore#version-6-3-2022-01-25
+    def make_htmlcov(self):
+        name = 'htmlcov'
+        if not os.path.isdir(name):
+            os.mkdir(name)
+        with open(os.path.join(name, '.gitignore'), 'w'):
+            pass  # create an empty file
+
 
     def scan(self):
         cmd, ret, out = self.execute()
