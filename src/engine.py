@@ -34,7 +34,7 @@ class Scanner:
         result = subprocess.run(cmd, shell=True, check=False, capture_output=True, text=True)
 
         out = (result.stdout + result.stderr).strip()
-        ret = 2 if result.stderr.strip() or (treat_non_empty_output_as_failure and out) else result.returncode
+        ret = 2 if result.returncode or (treat_non_empty_output_as_failure and out) else result.returncode
         if print_output:
             print(out)
         if ret != 0 and exit_on_failure:
