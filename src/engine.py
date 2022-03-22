@@ -12,8 +12,8 @@ class Scanner:
     def install(self, path):
         cmd, ret, pwd = self.execute('pwd', exit_on_failure=False)
         cmd, ret, ls = self.execute(f'ls -l .', exit_on_failure=False)
-        print(f'Contents of current directory "{pwd}" is:\n{ls}')
-        print('About to install Python dependencies')
+        # print(f'Contents of current directory "{pwd}" is:\n{ls}')
+        # print('About to install Python dependencies')
         if os.path.isfile(path):
             print(f'Detected "{path}". Installing.')
             cmd, ret, out = self.execute(f'pip install --user --no-compile --no-cache-dir -r {path}', exit_on_failure=False)
