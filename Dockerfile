@@ -8,8 +8,8 @@ RUN addgroup -S veripy && \
     adduser -S veripy -G veripy
 USER veripy
 
-RUN python -m pip install --user --upgrade pip && \
-    pip install --user --no-cache-dir \
+RUN python -m pip install --prefix=/usr/local --upgrade pip && \
+    pip install --prefix=/usr/local --no-cache-dir \
         nose2[coverage_plugin] coverage pylint radon bandit
 
 ENTRYPOINT ["/entrypoint.sh"]
