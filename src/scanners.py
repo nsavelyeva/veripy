@@ -69,7 +69,6 @@ class Cov(Scanner):
         with open(os.path.join(name, '.gitignore'), 'w'):
             pass  # create an empty file
 
-
     def scan(self):
         cmd, ret, out = self.execute()
         msg = ''
